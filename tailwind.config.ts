@@ -89,6 +89,18 @@ const config: Config = {
       maxWidth: {
         site: "1240px",
       },
+
+      // ─── Photo strip marquee ───
+      animation: {
+        "marquee-fwd": "marquee 130s linear infinite",
+        "marquee-rev": "marquee 160s linear infinite reverse",
+      },
+      keyframes: {
+        marquee: {
+          "0%":   { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
+      },
     },
   },
   plugins: [],
