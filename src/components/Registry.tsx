@@ -9,9 +9,9 @@ export function Registry() {
   const { t } = useLang();
 
   return (
-    <section id="registry" className="py-24 px-4 bg-ink">
+    <section id="registry" className="py-24 px-4 bg-surface">
       <div className="max-w-site mx-auto">
-        <SectionHeader tag={t("registryTag")} title={t("registryTitle")} light />
+        <SectionHeader tag={t("registryTag")} title={t("registryTitle")} />
 
         <motion.div
           className="max-w-lg mx-auto text-center"
@@ -20,7 +20,7 @@ export function Registry() {
           viewport={{ once: true, amount: 0.2 }}
           variants={staggerContainer}
         >
-          <motion.p variants={reveal} className="text-body text-white/55 mb-12 text-pretty">
+          <motion.p variants={reveal} className="text-body text-muted mb-12 text-pretty">
             {t("registryNote")}
           </motion.p>
 
@@ -30,13 +30,13 @@ export function Registry() {
           >
             <a
               href="#"
-              className="w-full sm:w-auto px-8 py-3.5 border border-white/25 rounded-full text-label font-body uppercase tracking-[0.2em] text-bg/75 hover:border-white/55 hover:text-bg transition-all duration-fast ease-out-expo"
+              className="w-full sm:w-auto px-8 py-3.5 border border-subtle rounded-full text-label font-body uppercase tracking-[0.2em] text-muted hover:border-accent hover:text-ink transition-all duration-fast ease-out-expo"
             >
               {t("giftRegistry")}
             </a>
             <a
               href="#"
-              className="w-full sm:w-auto px-8 py-3.5 border border-white/25 rounded-full text-label font-body uppercase tracking-[0.2em] text-bg/75 hover:border-white/55 hover:text-bg transition-all duration-fast ease-out-expo"
+              className="w-full sm:w-auto px-8 py-3.5 border border-subtle rounded-full text-label font-body uppercase tracking-[0.2em] text-muted hover:border-accent hover:text-ink transition-all duration-fast ease-out-expo"
             >
               {t("honeymoonFund")}
             </a>

@@ -25,8 +25,8 @@ export function Hero() {
           width={1232}
           height={864}
           priority
-          className="w-[min(760px,92vw)] h-auto"
-          style={{ mixBlendMode: "multiply", opacity: 0.3 }}
+          className="w-[min(980px,130vw)] h-auto translate-x-[6%] -translate-y-[3%]"
+          style={{ mixBlendMode: "multiply", opacity: 0.38 }}
         />
       </div>
 

@@ -18,9 +18,9 @@ export function Schedule() {
   ];
 
   return (
-    <section id="schedule" className="py-24 px-4 bg-ink">
+    <section id="schedule" className="py-24 px-4 bg-bg">
       <div className="max-w-site mx-auto">
-        <SectionHeader tag={t("scheduleTag")} title={t("scheduleTitle")} light />
+        <SectionHeader tag={t("scheduleTag")} title={t("scheduleTitle")} />
 
         <motion.div
           className="max-w-2xl mx-auto"
@@ -34,18 +34,18 @@ export function Schedule() {
               key={i}
               variants={reveal}
               className={`flex items-baseline gap-8 sm:gap-12 py-6 ${
-                i < events.length - 1 ? "border-b border-white/10" : ""
+                i < events.length - 1 ? "border-b border-subtle" : ""
               }`}
             >
-              <span className="font-body text-label uppercase tracking-[0.12em] text-white/35 shrink-0 w-20 text-right">
+              <span className="font-body text-label uppercase tracking-[0.12em] text-subtle shrink-0 w-20 text-right">
                 {ev.time}
               </span>
               <div>
-                <p className="font-display italic text-title text-bg leading-tight">
+                <p className="font-display italic text-title text-ink leading-tight">
                   {ev.title}
                 </p>
                 {ev.note && (
-                  <p className="text-body text-white/45 mt-1">{ev.note}</p>
+                  <p className="text-body text-muted mt-1">{ev.note}</p>
                 )}
               </div>
             </motion.div>
