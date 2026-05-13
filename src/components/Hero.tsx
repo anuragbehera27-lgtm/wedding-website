@@ -1,9 +1,9 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { heroContainer, heroChild } from "@/lib/tokens";
 import { useLang } from "@/context/LangContext";
-import { BotanicalWreath } from "./BotanicalWreath";
 
 export function Hero() {
   const { t } = useLang();
@@ -19,9 +19,14 @@ export function Hero() {
         className="absolute inset-0 flex items-center justify-center pointer-events-none select-none"
         aria-hidden="true"
       >
-        <BotanicalWreath
-          className="w-[min(860px,110vw)] h-auto translate-x-[6%] -translate-y-[3%] text-muted"
-          style={{ opacity: 0.45, mixBlendMode: "multiply" }}
+        <Image
+          src="/images/flower.png"
+          alt=""
+          width={1232}
+          height={864}
+          priority
+          className="w-[min(980px,130vw)] h-auto translate-x-[6%] -translate-y-[3%]"
+          style={{ mixBlendMode: "multiply", opacity: 0.38 }}
         />
       </div>
 
