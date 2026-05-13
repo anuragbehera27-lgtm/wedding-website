@@ -6,37 +6,101 @@ import { reveal } from "@/lib/tokens";
 import { useLang } from "@/context/LangContext";
 import { SectionHeader } from "./SectionHeader";
 
+const TIMELINE: {
+  year: string;
+  en: { title: string; note: string };
+  it: { title: string; note: string };
+}[] = [
+  {
+    year: "2016",
+    en: {
+      title: "A Diwali in Milan",
+      note: "Two PhD students met at a Diwali celebration and never quite looked away.",
+    },
+    it: {
+      title: "Un Diwali a Milano",
+      note: "Due dottorandi si incontrarono a una festa di Diwali — e non smisero più di guardarsi.",
+    },
+  },
+  {
+    year: "2020",
+    en: {
+      title: "Lockdown, together",
+      note: "The world stopped. We discovered we were each other's home.",
+    },
+    it: {
+      title: "Il lockdown, insieme",
+      note: "Il mondo si fermò. Scoprimmo di essere la casa l'uno dell'altra.",
+    },
+  },
+  {
+    year: "2022",
+    en: {
+      title: "Doctors, both",
+      note: "Years of research, late nights, and hard-won pages — finally done.",
+    },
+    it: {
+      title: "Dottori, entrambi",
+      note: "Anni di ricerca, notti tarde e pagine sudate — finalmente conclusi.",
+    },
+  },
+  {
+    year: "2023",
+    en: {
+      title: "España",
+      note: "A new country, a new chapter. And then Chichu joined the family.",
+    },
+    it: {
+      title: "Spagna",
+      note: "Un nuovo paese, un nuovo capitolo. E poi Chichu è entrato in famiglia.",
+    },
+  },
+  {
+    year: "2025",
+    en: {
+      title: "Olivia",
+      note: "She made us three.",
+    },
+    it: {
+      title: "Olivia",
+      note: "Ci ha fatti diventare tre.",
+    },
+  },
+  {
+    year: "2026",
+    en: {
+      title: "Forever",
+      note: "Now we make it official — surrounded by everyone we love, in Italy.",
+    },
+    it: {
+      title: "Per sempre",
+      note: "Ora lo rendiamo ufficiale — circondati da tutti quelli che amiamo, in Italia.",
+    },
+  },
+];
+
 export function Story() {
-  const { t } = useLang();
+  const { t, lang } = useLang();
 
   return (
     <section id="story" className="py-24 px-4 bg-bg overflow-hidden">
       <div className="max-w-site mx-auto">
         <SectionHeader tag={t("storyTag")} title={t("storyTitle")} />
 
-        {/* Two-column grid: image 5fr · text 7fr.
-            Asymmetric split breaks the 50/50 symmetry from the original. */}
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-[5fr_7fr] gap-12 lg:gap-20 items-center"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          variants={{
-            hidden:   {},
-            visible:  { transition: { staggerChildren: 0.15 } },
-          }}
-        >
+        <div className="grid grid-cols-1 md:grid-cols-[5fr_7fr] gap-12 lg:gap-20 items-start">
+
           {/* ── Image column ─────────────────────────────────────────── */}
-          <motion.div variants={reveal}>
-            {/* pr-3 pb-3 creates space for the offset border frame to show */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+            variants={reveal}
+          >
             <div className="relative pr-3 pb-3">
-              {/* Offset border frame — visually behind the image */}
               <div
                 className="absolute top-3 left-3 right-0 bottom-0 border border-subtle rounded-md"
                 aria-hidden="true"
               />
-
-              {/* Image — sits above the frame, lifts on hover toward top-left */}
               <motion.div
                 className="relative z-10 aspect-[4/5] rounded-md overflow-hidden shadow-sm"
                 whileHover={{
@@ -59,36 +123,54 @@ export function Story() {
             </div>
           </motion.div>
 
-          {/* ── Text column ──────────────────────────────────────────── */}
-          <motion.div variants={reveal} className="md:pl-6 lg:pl-12">
-            {/* Lead paragraph with oversized opening quote */}
-            <div className="relative mb-8 pl-1">
-              <span
-                className="absolute font-display leading-none text-subtle select-none pointer-events-none"
-                style={{
-                  fontSize: "clamp(4rem, 8vw, 5.5rem)",
-                  opacity: 0.35,
-                  top: "-1.5rem",
-                  left: "-0.75rem",
-                }}
+          {/* ── Timeline column ───────────────────────────────────────── */}
+          <motion.div
+            className="md:pl-6 lg:pl-12"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.05 }}
+            variants={{
+              hidden: {},
+              visible: { transition: { staggerChildren: 0.13 } },
+            }}
+          >
+            <div className="relative">
+              {/* Vertical connecting line */}
+              <div
+                className="absolute left-[3px] top-3 bottom-3 w-px bg-subtle"
                 aria-hidden="true"
-              >
-                &ldquo;
-              </span>
-              <p className="font-display italic text-title text-ink pt-3 text-pretty">
-                {t("storyLead")}
-              </p>
-            </div>
+              />
 
-            {/* Body paragraphs — muted, readable line length */}
-            <p className="text-body text-muted mb-5 text-pretty max-w-[60ch]">
-              {t("storyBody1")}
-            </p>
-            <p className="text-body text-muted text-pretty max-w-[60ch]">
-              {t("storyBody2")}
-            </p>
+              {TIMELINE.map((m, i) => {
+                const entry = lang === "it" ? m.it : m.en;
+                return (
+                  <motion.div
+                    key={i}
+                    variants={reveal}
+                    className="relative pl-7 pb-9 last:pb-0"
+                  >
+                    {/* Dot marker */}
+                    <div
+                      className="absolute left-0 top-[0.45rem] w-[7px] h-[7px] rounded-full border border-subtle bg-bg"
+                      aria-hidden="true"
+                    />
+
+                    <span className="font-body text-label uppercase tracking-[0.2em] text-subtle block mb-1.5">
+                      {m.year}
+                    </span>
+                    <p className="font-display italic text-title text-ink leading-tight mb-1.5">
+                      {entry.title}
+                    </p>
+                    <p className="text-body text-muted text-pretty max-w-[48ch]">
+                      {entry.note}
+                    </p>
+                  </motion.div>
+                );
+              })}
+            </div>
           </motion.div>
-        </motion.div>
+
+        </div>
       </div>
     </section>
   );
