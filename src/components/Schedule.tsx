@@ -33,11 +33,11 @@ export function Schedule() {
             <motion.div
               key={i}
               variants={reveal}
-              className={`flex items-start gap-8 sm:gap-14 py-6 ${
+              className={`flex items-baseline gap-8 sm:gap-12 py-6 ${
                 i < events.length - 1 ? "border-b border-white/10" : ""
               }`}
             >
-              <span className="font-body text-label uppercase tracking-[0.12em] text-white/35 shrink-0 w-[4.5rem] pt-0.5">
+              <span className="font-body text-label uppercase tracking-[0.12em] text-white/35 shrink-0 w-20 text-right">
                 {ev.time}
               </span>
               <div>
